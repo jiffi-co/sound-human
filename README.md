@@ -21,23 +21,29 @@ You don't need to be a developer to use it. You install it once and it works in 
 
 ## Install it in a minute
 
-It installs from the builder-kit-lean marketplace. In a terminal:
-
-```bash
-claude plugin marketplace add jiffi-co/builder-kit-lean
-claude plugin install sound-human@builder-kit-lean
-```
-
-To have Claude Code use it every time, add this section to `~/.claude/CLAUDE.md`:
+Open Claude Code and paste this in:
 
 ```text
-## Sound human
-Use the sound-human skill on anything you write for me that another person will read: emails, documents, posts, page copy and commit messages. Follow it, and write in Australian English.
+Please install the sound-human skill for Claude Code from this public repo:
+https://github.com/jiffi-co/sound-human
+
+Install it at the user level so it works in every project, and set it up so you always use it:
+
+1. Before you install anything, read the skill's files and tell me in plain English what it does and whether anything in it runs commands or touches my files.
+
+2. Download the repo to a temporary folder (git clone, or the zip from GitHub if git isn't available). Copy its skills/sound-human folder to ~/.claude/skills/sound-human/ so SKILL.md sits directly in that folder. On Windows, ~ is my user folder. If a sound-human skill is already there, show me what would change and ask before replacing it. Delete the temporary folder when you're done.
+
+3. Add this section to ~/.claude/CLAUDE.md. If the file doesn't exist, create it. If it does exist, add the section at the end and don't change anything already in it.
+
+   ## Sound human
+   Use the sound-human skill on anything you write for me that another person will read: emails, documents, posts, page copy and commit messages. Follow it, and write in Australian English.
+
+4. Show me the final folder structure and the exact section you added to CLAUDE.md, then tell me to start a fresh session so it all loads.
 ```
 
 Start a fresh session afterwards. That's it.
 
-Prefer to install it by hand, or from a zip? See [INSTALL.md](INSTALL.md).
+Prefer to do it by hand, or have the zip instead? See [INSTALL.md](INSTALL.md).
 
 ## What changes
 
