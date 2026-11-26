@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "sound-human",
+  "description": "Removes the signs of AI writing from anything a person will read, in Australian English.",
+  "author": {
+    "name": "Jake Shelley"
+  },
+  "homepage": "https://github.com/jiffi-co/sound-human",
+  "repository": "https://github.com/jiffi-co/sound-human",
+  "license": "MIT",
+  "keywords": [
+    "jiffi",
+    "writing",
+    "australian-english",
+    "editing",
+    "humanizer"
+  ]
+}

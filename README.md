@@ -13,7 +13,7 @@
 
 People can tell when AI wrote something. Words like "delve" give it away. So do lines like "it's not just X, it's Y". Once a reader spots one, they stop trusting the rest.
 
-This skill makes Claude Code find those giveaways and rewrite the text so it reads like a person wrote it. It checks 42 patterns and writes in Australian English.
+This skill makes Claude Code find those giveaways and rewrite the text so it reads like a person wrote it. It checks 51 patterns, never invents facts to sound human, and writes in Australian English.
 
 It is a modified copy of [humanizer](https://github.com/blader/humanizer) by Siqi Chen. If you write US English, install that one instead.
 
@@ -25,7 +25,7 @@ Open Claude Code and paste this in:
 
 ```text
 Please install the sound-human skill for Claude Code from this public repo:
-https://github.com/jake-jiffi/sound-human
+https://github.com/jiffi-co/sound-human
 
 Install it at the user level so it works in every project, and set it up so you always use it:
 
@@ -63,13 +63,13 @@ And this is the whole piece after the rewrite:
 
 ## How it works
 
-1. It scans the text against 42 patterns.
+1. It scans the text against 51 patterns.
 2. It rewrites what it flagged and keeps your meaning and tone.
 3. It asks itself "what makes this so obviously AI generated?" and lists what is left.
 4. It rewrites again to clear that list.
 5. It checks the spelling is Australian.
 
-The 42 patterns sit in six groups:
+The 51 patterns sit in seven groups:
 
 | Group | Patterns | What it catches |
 |---|---|---|
@@ -79,6 +79,7 @@ The 42 patterns sit in six groups:
 | Communication | 5 | "I hope this helps", knowledge-cutoff disclaimers, flattery |
 | Filler and hedging | 5 | Filler phrases, stacked hedges, upbeat endings that say nothing |
 | Structure | 4 | Fabricated citations, summaries that restate, habits of each AI model |
+| Newer tells | 9 | "Here's the thing", "honestly", slogan endings, corporate power verbs, LinkedIn post shapes, email boilerplate, made-up names and numbers |
 
 Clean isn't enough. Text with every giveaway removed still reads as machine-made if it has no point of view. So the skill also pushes for opinions, uneven rhythm and specifics.
 
@@ -88,7 +89,7 @@ The full skill is one file: [skills/sound-human/SKILL.md](skills/sound-human/SKI
 
 ```text
 skills/sound-human/
-└── SKILL.md      the skill: 42 patterns, a worked example and a quick-reference list
+└── SKILL.md      the skill: 51 patterns, a worked example and a quick-reference list
 ```
 
 No scripts. No network calls. It is instructions and examples, nothing else.
@@ -101,8 +102,10 @@ To call it yourself, say "use sound-human on this" and paste your text. You get 
 
 ## How it differs from the original
 
-- Every rewrite comes out in Australian English: -ise endings, colour, organisation, programme. The version of the original it was built from set no spelling.
-- It checks 42 patterns. That version had 25.
+- Every rewrite comes out in Australian English: -ise endings, colour, organisation, licence and practice as nouns. The version of the original it was built from set no spelling.
+- It checks 51 patterns. That version had 25.
+- It has five rules that outrank the patterns. The first is that it never invents a fact, a number, a name or a story to make text sound human.
+- It has a quiet mode: when Claude Code is writing something for you as part of another job, you get the finished text only.
 - It adds a quick-reference list of words and phrases to flag on sight, and notes on how the giveaways differ from one AI model to the next.
 - It has its own name and version number. Neither tracks the original, which has had releases since this copy branched off.
 
