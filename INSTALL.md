@@ -10,7 +10,7 @@ Paste this into Claude Code:
 
 ```text
 Please install the sound-human skill for Claude Code from this public repo:
-https://github.com/jake-jiffi/sound-human
+https://github.com/jiffi-co/sound-human
 
 Install it at the user level so it works in every project, and set it up so you always use it:
 
@@ -50,7 +50,7 @@ Please install it at the user level so it works in every project, and set it up 
 Mac or Linux, in a terminal:
 
 ```sh
-git clone --depth 1 https://github.com/jake-jiffi/sound-human /tmp/sound-human
+git clone --depth 1 https://github.com/jiffi-co/sound-human /tmp/sound-human
 mkdir -p ~/.claude/skills
 cp -R /tmp/sound-human/skills/sound-human ~/.claude/skills/
 rm -rf /tmp/sound-human
@@ -59,7 +59,7 @@ rm -rf /tmp/sound-human
 Windows, in PowerShell:
 
 ```powershell
-git clone --depth 1 https://github.com/jake-jiffi/sound-human "$env:TEMP\sound-human"
+git clone --depth 1 https://github.com/jiffi-co/sound-human "$env:TEMP\sound-human"
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
 Copy-Item -Recurse -Force "$env:TEMP\sound-human\skills\sound-human" "$env:USERPROFILE\.claude\skills\"
 Remove-Item -Recurse -Force "$env:TEMP\sound-human"
