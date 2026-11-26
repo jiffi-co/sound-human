@@ -115,7 +115,7 @@ For the maintained original, go to [blader/humanizer](https://github.com/blader/
 
 - Based on [humanizer](https://github.com/blader/humanizer) by Siqi Chen (MIT). The approach and the audit pass come from that project, and the worked example is adapted from it.
 - The patterns are drawn from Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) page, maintained by WikiProject AI Cleanup.
-- Packaged by [Jake Shelley](https://github.com/jake-jiffi).
+- Packaged by Jake Shelley.
 
 ## Licence
 
