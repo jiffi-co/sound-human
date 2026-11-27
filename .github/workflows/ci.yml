@@ -1,0 +1,57 @@
+name: CI
+
+# Validates the files and scans the whole history for secrets on every PR,
+# so each change reaches main with automated checks (Secure Development Policy).
+# GitHub-hosted only: this repo is public, and the org's self-hosted runner group
+# does not accept public repositories (a fork PR must never reach those hosts).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  validate:
+    name: Validate files (${{ matrix.runner.name }})
+    runs-on: ${{ matrix.runner.labels }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - { name: hosted, labels: ubuntu-latest }
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: JSON, YAML, shell syntax and plugin manifests
+        run: |
+          python3 -c 'import yaml' 2>/dev/null || python3 -m pip install --user --quiet 'PyYAML==6.0.2'
+          python3 .github/scripts/validate_files.py
+
+  secret-scan:
+    name: Secret scan (${{ matrix.runner.name }})
+    runs-on: ${{ matrix.runner.labels }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - { name: hosted, labels: ubuntu-latest }
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks over the full history
+        run: >-
+          docker run --rm -v "$PWD:/repo"
+          zricethezav/gitleaks:v8.21.2@sha256:0e99e8821643ea5b235718642b93bb32486af9c8162c8b8731f7cbdc951a7f46
+          git /repo --no-banner --redact --exit-code 1
